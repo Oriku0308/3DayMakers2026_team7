@@ -24,6 +24,10 @@ public class EnemyGroup : MonoBehaviour
     {
         _badKidsCount++;
         //わるい子を更生した数が一定数に達したらステージ更新
-        if (_badKidsCount >= _badKidsMaxCount) EventHub.OnAllKidGoodAct();
+        if (_badKidsCount >= _badKidsMaxCount)
+        {
+            _badKidsCount = 0;
+            EventHub.OnAllKidGoodAct();
+        }
     }
 }
