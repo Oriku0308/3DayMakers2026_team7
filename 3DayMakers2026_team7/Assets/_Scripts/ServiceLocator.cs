@@ -4,26 +4,15 @@ using UnityEngine;
 
 public static class ServiceLocator
 {
-    static readonly Dictionary<Type, object> _dict = new();
+    private static readonly IDictionary<Type, Type> _typeDictionary = new Dictionary<Type, Type>();
 
-    public static void Register<TKey, TValue>(TValue value)
+    public static void Register<TKey, TValue>()
     {
-        _dict.Add(typeof(TKey), value);
+        _typeDictionary[typeof(TKey)] = typeof(TValue);
     }
 
-    public static TValue Resolve<TKey, TValue>(TKey type)
+    public static TKey Resolve<TKey>()
     {
-        return (TValue)_dict[typeof(TKey)];
-    }
-
-    public static void RemoveValue<TKey>()
-    {
-        if (!_dict.ContainsKey(typeof(TKey))) return;
-        _dict.Remove(typeof(TKey));
-    }
-
-    public static void RemoveAll()
-    {
-        _dict.Clear();
+        return (TKey)Activator.CreateInstance(_typeDictionary[typeof(TKey)]);
     }
 }
