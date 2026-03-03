@@ -15,12 +15,19 @@ public class TimeManager : MonoBehaviour
     private bool _isTimerRunning = false;
 
     // 以下はpublicメゾット
-    public void Awake()
+    public void TimerReset()
     {
         CurrentTime = _maxTime;
+        _isTimerRunning = false;
+        UpdateText();
     }
 
     // 以下はprivateメゾット
+
+    private void Start()
+    {
+        TimerReset();
+    }
 
     private void Update()
     {
@@ -71,13 +78,10 @@ public class TimeManager : MonoBehaviour
 
     private void UpdateText()
     {
-        if(_timeText != null)
+        // TimerのText表示を更新
+        if (_timeText != null)
         {
-            // TimerのText表示を更新
-            if (_timeText != null)
-            {
-                _timeText.text = Mathf.CeilToInt(CurrentTime).ToString();
-            }
+            _timeText.text = Mathf.CeilToInt(CurrentTime).ToString();
         }
     }
 
@@ -87,6 +91,6 @@ public class TimeManager : MonoBehaviour
         StopTimer();
         Debug.Log("Time's up!");
 
-        // EventManager.OnGameEnded?.Invork();
+        // EventManager.OnGameEnded?.Invoke();
     }
 }
