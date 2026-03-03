@@ -1,5 +1,6 @@
 using UnityEngine;
 
+/// <summary>プレハブ生成に対応したエネミー群生成クラス</summary>
 public class EnemyGeneratorWithInstantiate : MonoBehaviour
 {
     [SerializeField, Tooltip("エネミー群\n戦闘要素がステージの初め")] EnemyGroup[] _enemyGroups;
