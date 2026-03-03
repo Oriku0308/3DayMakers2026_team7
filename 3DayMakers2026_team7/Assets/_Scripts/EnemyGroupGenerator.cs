@@ -3,13 +3,25 @@ using UnityEngine;
 /// <summary>エネミー群を生成するクラス</summary>
 public class EnemyGroupGenerator : MonoBehaviour
 {
-    [SerializeField,Tooltip("エネミー群\n戦闘要素がステージの初め")] EnemyGroup[] _enemyGroups;
+    [SerializeField, Tooltip("エネミー群\n戦闘要素がステージの初め")] EnemyGroup[] _enemyGroups;
+
+    private void OnEnable()
+    {
+        EventHub.GameStartEvent += Initialize;
+        EventHub.OnAllKidGoodEvent += EnemyGroupGenerate;
+    }
+
+    private void OnDisable()
+    {
+        EventHub.GameStartEvent -= Initialize;
+        EventHub.OnAllKidGoodEvent -= EnemyGroupGenerate;
+    }
 
     /// <summary>
     /// 初期化関数
     /// </summary>
     [ContextMenu("Initialize")]
-    public void Initialize()
+    void Initialize()
     {
         //初めにすべて非アクティブ
         foreach (var enemyGroup in _enemyGroups)
@@ -24,7 +36,7 @@ public class EnemyGroupGenerator : MonoBehaviour
     /// エネミー群を生成する関数
     /// </summary>
     [ContextMenu("EnemyGroupGenerate")]
-    public void EnemyGroupGenerate()
+    void EnemyGroupGenerate()
     {
         //現在アクティブなエネミー群を非アクティブ
         _enemyGroups[0].gameObject.SetActive(false);
