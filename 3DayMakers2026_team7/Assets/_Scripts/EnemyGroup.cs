@@ -3,7 +3,7 @@ using UnityEngine;
 /// <summary>エネミー群のクラス</summary>
 public class EnemyGroup : MonoBehaviour
 {
-    [SerializeField] int _badKidsMaxCount;
+    [SerializeField, Tooltip("このステージ内のわるい子の数")] int _badKidsMaxCount;
     int _badKidsCount;
 
     private void OnEnable()
