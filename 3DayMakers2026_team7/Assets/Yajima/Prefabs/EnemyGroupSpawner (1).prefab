@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8417109861038599047
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2292633017003238985}
+  - component: {fileID: 769565533670826375}
+  m_Layer: 0
+  m_Name: EnemyGroupSpawner (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2292633017003238985
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8417109861038599047}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &769565533670826375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8417109861038599047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90e981a636185794fbcf70ced31baefc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyGeneratorWithInstantiate
+  _enemyGroups:
+  - {fileID: 8925050072474372249, guid: 9156d91fdd8c25349851a3b4c211042f, type: 3}
+  - {fileID: 4795057757282453381, guid: 9c5d8a827f6b68f419c9a50c7193ab64, type: 3}
+  - {fileID: 1776288875123647889, guid: 953213c6ebc08284ca615a2bb8e16b37, type: 3}
+  - {fileID: 4656848050128621878, guid: 1e5aab1c324ac2f41b5133d98ccc88ca, type: 3}
+  - {fileID: 7938050431535891800, guid: 9fc6ec06fea676d468a0e33e8cf7628a, type: 3}
+  - {fileID: 7039217030795441221, guid: 1f11782e1da1da34483aee163ce671b7, type: 3}
+  - {fileID: 4229414257812672243, guid: 2507489d1f8856746828033d06cf3393, type: 3}
+  _generatePosition: {x: 0, y: 0, z: 0}

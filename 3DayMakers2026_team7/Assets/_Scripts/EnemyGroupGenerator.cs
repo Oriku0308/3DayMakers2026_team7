@@ -3,7 +3,7 @@ using UnityEngine;
 /// <summary>エネミー群を生成するクラス</summary>
 public class EnemyGroupGenerator : MonoBehaviour
 {
-    [SerializeField,Tooltip("エネミー群\n戦闘要素がステージの初め")] private EnemyGroup[] _enemyGroups;
+    [SerializeField,Tooltip("エネミー群\n戦闘要素がステージの初め")] EnemyGroup[] _enemyGroups;
 
     /// <summary>
     /// 初期化関数
