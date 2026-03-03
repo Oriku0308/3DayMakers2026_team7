@@ -13,6 +13,14 @@ public static class ServiceLocator
 
     public static TKey Resolve<TKey>()
     {
-        return (TKey)Activator.CreateInstance(_typeDictionary[typeof(TKey)]);
+        if (_typeDictionary.TryGetValue(typeof(TKey), out var k))
+            return (TKey)Activator.CreateInstance(k);
+        return default;
+    }
+
+    public static void Remove<TKey>()
+    {
+        if (_typeDictionary.ContainsKey(typeof(TKey)))
+            _typeDictionary.Remove(typeof(TKey));
     }
 }
