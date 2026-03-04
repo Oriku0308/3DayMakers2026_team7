@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BadKids : MonoBehaviour
+public class Kids : MonoBehaviour
 {
     [SerializeField] Sprite _bad;
     [SerializeField] Sprite _good;
@@ -9,12 +9,11 @@ public class BadKids : MonoBehaviour
     public void Initialize()
     {
         _spriteRenderer.sprite = _bad;
-        Debug.Log("BadKids Initialized");
+        Debug.Log("Kids Initialized");
     }
 
     private void Awake()
     {
-        tag = "BadBoy";
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -25,13 +24,26 @@ public class BadKids : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Vinegar")) BadKidHit();
+        if (collision.collider.CompareTag("Vinegar"))
+        {
+            if (CompareTag("BadBoy"))
+                BadKidHit();
+            else
+                GoodKidHit();
+        }
     }
 
     [ContextMenu("BadKidHit")]
     void BadKidHit()
     {
         _spriteRenderer.sprite = _good;
+        tag = "GoodBoy";
         EventHub.BadKidHitAct();
+    }
+
+    [ContextMenu("GoodKidHit")]
+    void GoodKidHit()
+    {
+        EventHub.GoodKidHitAct();
     }
 }
