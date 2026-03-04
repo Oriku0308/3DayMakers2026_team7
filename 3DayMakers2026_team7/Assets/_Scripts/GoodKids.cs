@@ -4,17 +4,17 @@ public class GoodKids : MonoBehaviour
 {
     public void Initialize()
     {
-        Debug.Log("Enemy Initialized");
+        Debug.Log("GoodKids Initialized");
+    }
+
+    private void Awake()
+    {
+        tag = "GoodBoy";
     }
 
     private void OnEnable()
     {
-        EventHub.GameStartEvent += Initialize;
-    }
-
-    private void OnDisable()
-    {
-        EventHub.GameStartEvent -= Initialize;
+        Initialize();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
