@@ -25,21 +25,27 @@ public class InGameSceneManager : MonoBehaviour
         ServiceLocator.Register<InGameSceneManager, InGameSceneManager>();
     }
 
+    private void OnEnable()
+    {
+        EventHub.OnAllKidGoodEvent += OnAllKill;
+        EventHub.GameEndEvent += EndGame;
+    }
+
+    private void OnDisable()
+    {
+        EventHub.OnAllKidGoodEvent -= OnAllKill;
+        EventHub.GameEndEvent -= EndGame;
+    }
+
     private void Start()
     {
         StartGame();
     }
 
-
-    private void OnTimeUp()
-    {
-        // TODO ：タイマーとの繋ぎこみをおこなう
-        _gameState = GameState.End;
-    }
-
     private void OnAllKill()
     {
-        // TODO ：エネミーの再生成とのつなぎこみをおこなう
+        // TODO: 全員倒したときの処理、何か決定したら足す
+         Debug.Log("All Kids are Good!");
     }
 
 
