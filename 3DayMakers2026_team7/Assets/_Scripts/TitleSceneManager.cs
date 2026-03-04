@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TitleManager : MonoBehaviour
+public class TitleSceneManager : MonoBehaviour
 {
     [SerializeField]
     private Button _inGameStartButton;

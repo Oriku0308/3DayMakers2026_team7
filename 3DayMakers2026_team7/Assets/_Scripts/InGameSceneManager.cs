@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GameFlowManager : MonoBehaviour
+public class InGameSceneManager : MonoBehaviour
 {
     public GameState CurrentGameState => _gameState;
     public void StartGame()
@@ -22,7 +22,7 @@ public class GameFlowManager : MonoBehaviour
 
     private void Awake()
     {
-        ServiceLocator.Register<GameFlowManager, GameFlowManager>();
+        ServiceLocator.Register<InGameSceneManager, InGameSceneManager>();
     }
 
     private void Start()
@@ -45,7 +45,7 @@ public class GameFlowManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        ServiceLocator.Remove<GameFlowManager>();
+        ServiceLocator.Remove<InGameSceneManager>();
     }
 }
 
