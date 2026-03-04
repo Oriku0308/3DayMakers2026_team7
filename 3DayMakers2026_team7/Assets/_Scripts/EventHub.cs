@@ -2,67 +2,56 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class EventHub
+public static class EventHub
 {
-    readonly Dictionary<Type, List<Delegate>> _dict = new();
+    public static event Action GameStartEvent;
+    public static event Action GameEndEvent;
+    public static event Action GamePauseEvent;
+    public static event Action GameResumedEvent;
+    public static event Action BadKidHitEvent;
+    public static event Action GoodKidHitEvent;
+    public static event Action OnAllKidGoodEvent;
+    public static event Action<int> ScoreChangedEvent;
 
-    /// <summary>
-    /// イベントの発火
-    /// </summary>
-    /// <typeparam name="TEvent">発火するイベントの種類</typeparam>
-    /// <param name="e">発火するイベント</param>
-    public void Publish<TEvent>(TEvent e)   //どんな型でも通るようになっているがそこは暗黙の了解
+    #region Invoke
+    public static void GameStartAct()
     {
-        var type = typeof(TEvent);
-        if (!_dict.TryGetValue(type, out var list)) return;
-
-        var handlers = list.ToArray();
-        //登録されたアクションをすべて呼び出す
-        foreach (var handler in handlers)
-        {
-            ((Action<TEvent>)handler)(e);
-        }
+        GameStartEvent?.Invoke();
     }
 
-    /// <summary>
-    /// イベントの購読
-    /// </summary>
-    /// <typeparam name="TEvent">購読するイベントの種類</typeparam>
-    /// <param name="handler">発火時に行うアクション</param>
-    /// <returns>アクションを削除する処理</returns>
-    public IDisposable Subscribe<TEvent>(Action<TEvent> handler)    //どんな型でも通るようになっているがそこは暗黙の了解
+    public static void GameEndEventAct()
     {
-        //イベントに対してアクションを登録する
-        var type = typeof(TEvent);
-        if (!_dict.TryGetValue(type, out var list))
-        {
-            list = new List<Delegate>();
-            _dict[type] = list;
-        }
-
-        list.Add(handler);
-
-        //登録したアクションを削除したいとき用のクラスを返す
-        //戻り値に対して.Dispose()を実行するとアクションが消える
-        return new Subscription(() => list.Remove(handler));
+        GameEndEvent?.Invoke();
     }
 
-    /// <summary>アクションの削除を担うクラス</summary>
-    private sealed class Subscription : IDisposable
+    public static void GamePauseAct()
     {
-        readonly Action _dispose;
-        bool _disposed;
-
-        public Subscription(Action dispose)
-        {
-            _dispose = dispose;
-        }
-
-        public void Dispose()
-        {
-            if (_disposed) return;
-            _dispose();
-            _disposed = true;
-        }
+        GamePauseEvent?.Invoke();
     }
+
+    public static void GameResumeAct()
+    {
+        GameResumedEvent?.Invoke();
+    }
+
+    public static void BadKidHitAct()
+    {
+        BadKidHitEvent?.Invoke();
+    }
+
+    public static void GoodKidHitAct()
+    {
+        GoodKidHitEvent?.Invoke();
+    }
+
+    public static void OnAllKidGoodAct()
+    {
+        OnAllKidGoodEvent?.Invoke();
+    }
+
+    public static void ScoreChangedAct(int score)
+    {
+        ScoreChangedEvent?.Invoke(score);
+    }
+    #endregion
 }
