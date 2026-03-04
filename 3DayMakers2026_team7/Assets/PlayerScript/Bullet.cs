@@ -22,6 +22,7 @@ public class Bullet : MonoBehaviour
         if (transform.position.x < leftLimitx)
         {
             Destroy(gameObject);
+            Debug.Log("Á‚µ‚Ü‚µ‚½");
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
