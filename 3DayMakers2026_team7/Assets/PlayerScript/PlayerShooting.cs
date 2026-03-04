@@ -46,6 +46,7 @@ public class PlayerShooting : MonoBehaviour
     void Init()
     {
         _isShootable = true;
+        timer = fireInterval;
         Debug.Log("ショット可能");
     }
 

@@ -63,5 +63,6 @@ public class Score : MonoBehaviour
     void Result()
     {
         Ranking.SetPreScore(_score);
+        Ranking.Add(_score);
     }
 }
