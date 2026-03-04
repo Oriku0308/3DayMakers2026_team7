@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1009340554198897264}
   - component: {fileID: -6112493455854331199}
   m_Layer: 0
-  m_Name: BadKids
+  m_Name: BadKids 3
   m_TagString: BadBoy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 1203535260503484387, guid: 1d8cea4542862174e94f443789bd62d2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -142,7 +142,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Kids
   _bad: {fileID: 8371303612963833590, guid: 68fa1ff0ad9cb1d4f90c0aec94457b92, type: 3}
-  _good: {fileID: 3336061812519442974, guid: 67139af3b4651724d9adc2c74b745355, type: 3}
+  _good: {fileID: 7981391876698558411, guid: d34f5880ef765324ea7c5217650ac536, type: 3}
   _isBad: 1
-  _badScore: 100
-  _goodScore: -100
