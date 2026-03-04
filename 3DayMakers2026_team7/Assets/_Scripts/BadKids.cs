@@ -2,19 +2,25 @@ using UnityEngine;
 
 public class BadKids : MonoBehaviour
 {
+    [SerializeField] Sprite _bad;
+    [SerializeField] Sprite _good;
+    SpriteRenderer _spriteRenderer;
+
     public void Initialize()
     {
+        _spriteRenderer.sprite = _bad;
         Debug.Log("BadKids Initialized");
+    }
+
+    private void Awake()
+    {
+        tag = "BadBoy";
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void OnEnable()
     {
-        EventHub.GameStartEvent += Initialize;
-    }
-
-    private void OnDisable()
-    {
-        EventHub.GameStartEvent -= Initialize;
+        Initialize();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -25,6 +31,7 @@ public class BadKids : MonoBehaviour
     [ContextMenu("BadKidHit")]
     void BadKidHit()
     {
+        _spriteRenderer.sprite = _good;
         EventHub.BadKidHitAct();
     }
 }
