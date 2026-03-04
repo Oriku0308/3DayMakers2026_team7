@@ -7,11 +7,23 @@ public class EnemyGeneratorWithInstantiate : MonoBehaviour
     [SerializeField] Vector3 _generatePosition;
     EnemyGroup[] _enemyInstantiateGroups;
 
+    private void OnEnable()
+    {
+        EventHub.GameStartEvent += Initialize;
+        EventHub.OnAllKidGoodEvent += EnemyGroupGenerate;
+    }
+
+    private void OnDisable()
+    {
+        EventHub.GameStartEvent -= Initialize;
+        EventHub.OnAllKidGoodEvent -= EnemyGroupGenerate;
+    }
+
     /// <summary>
     /// 初期化関数
     /// </summary>
     [ContextMenu("Initialize")]
-    public void Initialize()
+    void Initialize()
     {
         _enemyInstantiateGroups = new EnemyGroup[_enemyGroups.Length];
         //初めにすべて非アクティブ
@@ -28,7 +40,7 @@ public class EnemyGeneratorWithInstantiate : MonoBehaviour
     /// エネミー群を生成する関数
     /// </summary>
     [ContextMenu("EnemyGroupGenerate")]
-    public void EnemyGroupGenerate()
+    void EnemyGroupGenerate()
     {
         //現在アクティブなエネミー群を非アクティブ
         _enemyInstantiateGroups[0].gameObject.SetActive(false);
