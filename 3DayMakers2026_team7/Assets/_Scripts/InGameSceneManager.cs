@@ -18,7 +18,6 @@ public class InGameSceneManager : MonoBehaviour
     {
         Debug.Log("Game End");
 
-        EventHub.GameEndEventAct();
         SceneTransitionManager.TransitionToResult();
     }
 

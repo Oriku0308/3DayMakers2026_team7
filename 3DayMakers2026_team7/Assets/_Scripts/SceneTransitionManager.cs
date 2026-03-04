@@ -8,7 +8,7 @@ public static class SceneTransitionManager
 {
     private readonly static string titleSceneName = "TitleScene";
     private readonly static string inGameSceneName = "InGameScene";
-    private readonly static string resultSceneName = "–¢ŽÀ‘•";
+    private readonly static string resultSceneName = "ResultScene";
 
     /// <summary>
     /// ƒ^ƒCƒgƒ‹‚Ö‘JˆÚ
