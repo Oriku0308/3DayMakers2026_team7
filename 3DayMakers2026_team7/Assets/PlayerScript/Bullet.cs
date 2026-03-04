@@ -13,7 +13,7 @@ public class Bullet : MonoBehaviour
         rb.freezeRotation = true;
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
     }
-    private void Start()
+    private void OnEnable()
     {
         rb.linearVelocity = transform.right * speed;
     }
@@ -21,30 +21,38 @@ public class Bullet : MonoBehaviour
     {
         if (transform.position.x < leftLimitx)
         {
-            Destroy(gameObject);
+            ReturnToPool();
+            Debug.Log("Á‚µ‚Ü‚µ‚½");
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("BadBoy"))
+        Debug.Log("“–‚½‚Á‚½‘ŠŽè:" + collision.gameObject.name);
+
+        if (collision.gameObject.CompareTag("BadBoy") || collision.gameObject.CompareTag("GoodBoy"))
         {
-            Debug.Log("BadBoy‚É“–‚½‚è‚Ü‚µ‚½");
-            Destroy(gameObject);
-            return;
+            Debug.Log("ƒ^ƒOˆê’vAÁ‚·");
+            ReturnToPool();
         }
-        else if (collision.gameObject.CompareTag("GoodBoy"))
-        {
-            Debug.Log("GoodBoy‚É“–‚½‚è‚Ü‚µ‚½");
-            Destroy(gameObject); 
-            return;
-        }
-        //if (collision.gameObject.CompareTag("Wall"))
+        //if (collision.gameObject.CompareTag("BadBoy"))
         //{
-        //    Conta
-        //    Vector2 normal = collision.contacts[0].normal;
-        //    Vector2 newDir = Vector2.Reflect(rb.linearVelocity.normalized, normal);
-        //    rb.linearVelocity = newDir * speed;
+        //    Debug.Log("BadBoy‚É“–‚½‚è‚Ü‚µ‚½");
+        //    Destroy(gameObject);
+        //    return;
         //}
+        //else if (collision.gameObject.CompareTag("GoodBoy"))
+        //{
+        //    Debug.Log("GoodBoy‚É“–‚½‚è‚Ü‚µ‚½");
+        //    Destroy(gameObject); 
+        //    return;
+        //}
+      
+    }
+
+    private void ReturnToPool()
+    {
+        rb.linearVelocity = Vector2.zero;
+        gameObject.SetActive(false);  
     }
 
     public void Reflect(Vector2 normal)

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -9,14 +10,36 @@ public class PlayerMove : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private float verticalInput;
     private float currentAngle = 0f;
-    // Update is called once per frame
+    private bool isMoving = false;
+
+    private void OnEnable()
+    {
+        EventHub.GameStartEvent -= EnableMove;
+    }
+
+    private void OnDisable()
+    {
+        EventHub.GameStartEvent -= EnableMove;
+    }
+
+    private void EnableMove()
+    {
+        isMoving = true;
+    }
     void Update()
     {
-        verticalInput = (Keyboard.current.wKey.isPressed ? 1 : 0) + (Keyboard.current.sKey.isPressed ? -1 : 0);
-        
+        if (!isMoving) 
+            return;
+        // verticalInput = (Keyboard.current.wKey.isPressed ? 1 : 0) + (Keyboard.current.sKey.isPressed ? -1 : 0);
+        HandleInput();
+
         Move();
 
         RotateGun();
+    }
+    private void HandleInput()
+    {
+        verticalInput = (Keyboard.current.wKey.isPressed ? 1 : 0) + (Keyboard.current.sKey.isPressed ? -1 : 0);
     }
    
     private void Move()
