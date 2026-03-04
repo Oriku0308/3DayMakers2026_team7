@@ -88,10 +88,9 @@ public class TimeManager : MonoBehaviour
     private void OnTimeUp()
     {
         // タイムアップ時の処理をここに記述
-        StopTimer();
-        SceneTransitionManager.TransitionToResult();
+        StopTimer();;
         Debug.Log("Time's up!");
 
-        // EventHub.GameEndEvent?.Invoke();
+        EventHub.GameEndEventAct();
     }
 }
