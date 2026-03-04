@@ -8,7 +8,10 @@ public class Score : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
+        //シーンに入ったら描画初期化
         _tmp = GetComponent<TextMeshProUGUI>();
+        _score = 0;
+        TextUpdate();
     }
 
     private void OnEnable()
@@ -27,8 +30,7 @@ public class Score : MonoBehaviour
 
     void Initialize()
     {
-        _score = 0;
-        TextUpdate();
+        //何かゲームがスタートした時に必要な処理
     }
 
     void TextUpdate()
