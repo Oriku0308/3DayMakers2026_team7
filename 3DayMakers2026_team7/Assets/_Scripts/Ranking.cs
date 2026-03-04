@@ -5,6 +5,13 @@ public static class Ranking
     static int MaxRankCount = 5;
     readonly static List<int> _ranks = new() { 0, 0, 0, 0, 0 };
     public static List<int> Ranks => _ranks;
+    static int _preScore;
+    public static int PreScore => _preScore;
+
+    public static void SetPreScore(int preScore)
+    {
+        _preScore = preScore;
+    }
 
     public static void Add(int score)
     {
