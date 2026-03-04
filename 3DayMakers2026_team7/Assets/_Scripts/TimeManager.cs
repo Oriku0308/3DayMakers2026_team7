@@ -33,7 +33,7 @@ public class TimeManager : MonoBehaviour
     {
         if (!_isTimerRunning) return;
 
-        if(CurrentTime > 0)
+        if (CurrentTime > 0)
         {
             CurrentTime -= Time.deltaTime;
             UpdateText();
@@ -50,20 +50,20 @@ public class TimeManager : MonoBehaviour
 
     private void OnEnable()
     {
-        // EventManager.OnGameStarted += StartTimer;
-        // EventManager.OnGameEnded += StopTimer;
-        // EventManager.OnGamePaused += StopTimer;
-        // EventManager.OnGameResumed += StartTimer;
+        EventHub.GameStartEvent += StartTimer;
+        EventHub.GameEndEvent += StopTimer;
+        EventHub.GamePauseEvent += StopTimer;
+        EventHub.GameResumedEvent += StartTimer;
     }
 
     private void OnDisable()
     {
-        // EventManager.OnGameStarted -= StartTimer;
-        // EventManager.OnGameEnded -= StopTimer;
-        // EventManager.OnGamePaused -= StopTimer;
-        // EventManager.OnGameResumed -= StartTimer;
+        EventHub.GameStartEvent -= StartTimer;
+        EventHub.GameEndEvent -= StopTimer;
+        EventHub.GamePauseEvent -= StopTimer;
+        EventHub.GameResumedEvent -= StartTimer;
     }
-    
+
     [ContextMenu("StartTimer")]
     private void StartTimer()
     {
@@ -88,9 +88,9 @@ public class TimeManager : MonoBehaviour
     private void OnTimeUp()
     {
         // タイムアップ時の処理をここに記述
-        StopTimer();
+        StopTimer();;
         Debug.Log("Time's up!");
 
-        // EventManager.OnGameEnded?.Invoke();
+        EventHub.GameEndEventAct();
     }
 }

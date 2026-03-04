@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7068361926637530675}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: Vinegar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
   speed: 10
-  leftLimitx: -10
+  leftLimitx: -5
 --- !u!50 &426190646786797015
 Rigidbody2D:
   serializedVersion: 5

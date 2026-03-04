@@ -1,10 +1,14 @@
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class InGameSceneManager : MonoBehaviour
 {
     public GameState CurrentGameState => _gameState;
-    public void StartGame()
+    public async Task StartGame()
     {
+        Debug.Log("5ç§’å¾…ã¤");
+        await Task.Delay(5000);
+
         Debug.Log("Game Start");
       
         _gameState = GameState.Play;
@@ -14,7 +18,6 @@ public class InGameSceneManager : MonoBehaviour
     {
         Debug.Log("Game End");
 
-        EventHub.GameEndEventAct();
         SceneTransitionManager.TransitionToResult();
     }
 
@@ -25,21 +28,27 @@ public class InGameSceneManager : MonoBehaviour
         ServiceLocator.Register<InGameSceneManager, InGameSceneManager>();
     }
 
+    private void OnEnable()
+    {
+        EventHub.OnAllKidGoodEvent += OnAllKill;
+        EventHub.GameEndEvent += EndGame;
+    }
+
+    private void OnDisable()
+    {
+        EventHub.OnAllKidGoodEvent -= OnAllKill;
+        EventHub.GameEndEvent -= EndGame;
+    }
+
     private void Start()
     {
         StartGame();
     }
 
-
-    private void OnTimeUp()
-    {
-        // TODO Fƒ^ƒCƒ}[‚Æ‚ÌŒq‚¬‚±‚İ‚ğ‚¨‚±‚È‚¤
-        _gameState = GameState.End;
-    }
-
     private void OnAllKill()
     {
-        // TODO FƒGƒlƒ~[‚ÌÄ¶¬‚Æ‚Ì‚Â‚È‚¬‚±‚İ‚ğ‚¨‚±‚È‚¤
+        // TODO: å…¨å“¡å€’ã—ãŸã¨ãã®å‡¦ç†ã€ä½•ã‹æ±ºå®šã—ãŸã‚‰è¶³ã™
+         Debug.Log("All Kids are Good!");
     }
 
 
@@ -49,7 +58,7 @@ public class InGameSceneManager : MonoBehaviour
     }
 }
 
-/// ƒQ[ƒ€‚Ìó‘Ô‚ğŠÇ—‚·‚é—ñ‹“Œ^Aˆê‰—pˆÓ‚µ‚½‚ª‚¢‚ç‚È‚¯‚ê‚ÎÁ‚·
+/// ã‚²ãƒ¼ãƒ ã®çŠ¶æ…‹ã‚’ç®¡ç†ã™ã‚‹åˆ—æŒ™å‹ã€ä¸€å¿œç”¨æ„ã—ãŸãŒã„ã‚‰ãªã‘ã‚Œã°æ¶ˆã™
 public enum GameState
 {
     Countdown,

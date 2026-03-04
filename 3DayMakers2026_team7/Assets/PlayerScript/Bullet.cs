@@ -13,38 +13,46 @@ public class Bullet : MonoBehaviour
         rb.freezeRotation = true;
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
     }
-    private void Start()
+    private void OnEnable()
     {
         rb.linearVelocity = transform.right * speed;
     }
     void Update()
     {
-        if (transform.position.x < leftLimitx)
-        {
-            Destroy(gameObject);
-        }
+        //if (transform.position.x < leftLimitx)
+        //{
+        //    ReturnToPool();
+        //    Debug.Log("消しました");
+        //}
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("BadBoy"))
+        Debug.Log("当たった相手:" + collision.gameObject.name);
+
+        if (collision.gameObject.CompareTag("BadBoy") || collision.gameObject.CompareTag("GoodBoy"))
         {
-            Debug.Log("BadBoy�ɓ�����܂���");
-            Destroy(gameObject);
-            return;
+            Debug.Log("タグ一致、消す");
+            ReturnToPool();
         }
-        else if (collision.gameObject.CompareTag("GoodBoy"))
-        {
-            Debug.Log("GoodBoy�ɓ�����܂���");
-            Destroy(gameObject); 
-            return;
-        }
-        //if (collision.gameObject.CompareTag("Wall"))
+        //if (collision.gameObject.CompareTag("BadBoy"))
         //{
-        //    Conta
-        //    Vector2 normal = collision.contacts[0].normal;
-        //    Vector2 newDir = Vector2.Reflect(rb.linearVelocity.normalized, normal);
-        //    rb.linearVelocity = newDir * speed;
+        //    Debug.Log("BadBoyに当たりました");
+        //    Destroy(gameObject);
+        //    return;
         //}
+        //else if (collision.gameObject.CompareTag("GoodBoy"))
+        //{
+        //    Debug.Log("GoodBoyに当たりました");
+        //    Destroy(gameObject); 
+        //    return;
+        //}
+      
+    }
+
+    private void ReturnToPool()
+    {
+        rb.linearVelocity = Vector2.zero;
+        gameObject.SetActive(false);  
     }
 
     public void Reflect(Vector2 normal)
