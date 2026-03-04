@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerShooting : MonoBehaviour
 {
-    [SerializeField] private GameObject BulletPrefab;
+    [SerializeField] private BulletPool bulletPool;
     [SerializeField] private Transform Point;
     [SerializeField] private float fireInterval = 1.5f;
 
@@ -20,6 +20,6 @@ public class PlayerShooting : MonoBehaviour
 
     private void Shoot()
     {
-        Instantiate(BulletPrefab, Point.position,Point.rotation);
+        bulletPool.GetBullet(Point.position, Point.rotation);
     }
 }
