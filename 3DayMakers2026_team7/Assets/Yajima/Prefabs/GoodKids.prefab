@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3691790352614762077}
   - component: {fileID: 8546079492086482786}
-  - component: {fileID: -2410556076315298567}
+  - component: {fileID: 1309293769136897184}
+  - component: {fileID: -2209764578970664848}
   m_Layer: 0
   m_Name: GoodKids
-  m_TagString: Untagged
+  m_TagString: GoodBoy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92,7 +93,43 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &-2410556076315298567
+--- !u!58 &1309293769136897184
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6514442512853620341}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.5
+--- !u!114 &-2209764578970664848
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,6 +138,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 6514442512853620341}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c417a02942aca9644a6bd79032e02e62, type: 3}
+  m_Script: {fileID: 11500000, guid: a422be08ae0bfdf4ebdd39ad5a0c85ad, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GoodKids
+  m_EditorClassIdentifier: Assembly-CSharp::Kids
+  _bad: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  _good: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}

@@ -19,30 +19,30 @@ public class Bullet : MonoBehaviour
     }
     void Update()
     {
-        if (transform.position.x < leftLimitx)
-        {
-            ReturnToPool();
-            Debug.Log("Á‚µ‚Ü‚µ‚½");
-        }
+        //if (transform.position.x < leftLimitx)
+        //{
+        //    ReturnToPool();
+        //    Debug.Log("æ¶ˆã—ã¾ã—ãŸ");
+        //}
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("“–‚½‚Á‚½‘ŠŽè:" + collision.gameObject.name);
+        Debug.Log("å½“ãŸã£ãŸç›¸æ‰‹:" + collision.gameObject.name);
 
         if (collision.gameObject.CompareTag("BadBoy") || collision.gameObject.CompareTag("GoodBoy"))
         {
-            Debug.Log("ƒ^ƒOˆê’vAÁ‚·");
+            Debug.Log("ã‚¿ã‚°ä¸€è‡´ã€æ¶ˆã™");
             ReturnToPool();
         }
         //if (collision.gameObject.CompareTag("BadBoy"))
         //{
-        //    Debug.Log("BadBoy‚É“–‚½‚è‚Ü‚µ‚½");
+        //    Debug.Log("BadBoyã«å½“ãŸã‚Šã¾ã—ãŸ");
         //    Destroy(gameObject);
         //    return;
         //}
         //else if (collision.gameObject.CompareTag("GoodBoy"))
         //{
-        //    Debug.Log("GoodBoy‚É“–‚½‚è‚Ü‚µ‚½");
+        //    Debug.Log("GoodBoyã«å½“ãŸã‚Šã¾ã—ãŸ");
         //    Destroy(gameObject); 
         //    return;
         //}

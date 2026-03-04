@@ -14,7 +14,7 @@ public class PlayerMove : MonoBehaviour
 
     private void OnEnable()
     {
-        EventHub.GameStartEvent -= EnableMove;
+        EventHub.GameStartEvent += EnableMove;
     }
 
     private void OnDisable()
