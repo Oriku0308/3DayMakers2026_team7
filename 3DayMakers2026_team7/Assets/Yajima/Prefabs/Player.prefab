@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 5683623904566255405}
   - component: {fileID: 7905943537125452210}
   - component: {fileID: 4380340688695334502}
+  - component: {fileID: 3034046550487929211}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -215,3 +216,25 @@ MonoBehaviour:
   moveSpeed: 5
   rotateSpeed: 120
   Gun: {fileID: 8529088174968148746}
+--- !u!95 &3034046550487929211
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213235601803285437}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4950e434e69636a4ba395859f6f2bd5d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
