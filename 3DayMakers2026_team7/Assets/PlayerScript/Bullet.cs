@@ -5,6 +5,8 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float speed = 10f;
     [SerializeField] private float leftLimitx = -10f;
     private Rigidbody2D rb;
+    int _reflectionCount;
+    public int Reflection => _reflectionCount;
 
     private void Awake()
     {
@@ -15,6 +17,7 @@ public class Bullet : MonoBehaviour
     }
     private void OnEnable()
     {
+        _reflectionCount = 0;
         rb.linearVelocity = transform.right * speed;
     }
     void Update()
@@ -46,13 +49,13 @@ public class Bullet : MonoBehaviour
         //    Destroy(gameObject); 
         //    return;
         //}
-      
+
     }
 
     private void ReturnToPool()
     {
         rb.linearVelocity = Vector2.zero;
-        gameObject.SetActive(false);  
+        gameObject.SetActive(false);
     }
 
     public void Reflect(Vector2 normal)
@@ -60,5 +63,6 @@ public class Bullet : MonoBehaviour
         Vector2 newDir = Vector2.Reflect(transform.right.normalized, normal);
         rb.linearVelocity = newDir * speed;
         transform.right = newDir;
+        _reflectionCount++;
     }
 }

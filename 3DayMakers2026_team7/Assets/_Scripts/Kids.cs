@@ -52,10 +52,10 @@ public class Kids : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Vinegar"))
+        if (collision.collider.TryGetComponent<Bullet>(out var bullet))
         {
             if (CompareTag("BadBoy"))
-                BadKidHit();
+                BadKidHit(bullet.Reflection);
             else
                 GoodKidHit();
             _animator.SetTrigger("Hit");
@@ -63,14 +63,14 @@ public class Kids : MonoBehaviour
     }
 
     [ContextMenu("BadKidHit")]
-    void BadKidHit()
+    void BadKidHit(int reflection)
     {
         _spriteRenderer.sprite = _good;
         tag = "GoodBoy";
         _badParticle?.Stop();
         _goodParticle?.Play();
         EventHub.BadKidHitAct();
-        EventHub.ScoreChangedAct(_badScore);
+        EventHub.ScoreChangedAct(ScoreCalculator.CalculateScore(_badScore, reflection));
     }
 
     [ContextMenu("GoodKidHit")]
