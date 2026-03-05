@@ -18,6 +18,7 @@ public static class SceneTransitionManager
         /// シーンが存在するか確認する、指定されたシーン名がBuildSettingに存在しない場合falseを返す
         if (Application.CanStreamedLevelBeLoaded(titleSceneName))
         {
+            SceneFader.FadeOut(1f);
             SceneManager.LoadScene(titleSceneName);
         }
         else
@@ -33,6 +34,7 @@ public static class SceneTransitionManager
     {
         if (Application.CanStreamedLevelBeLoaded(inGameSceneName))
         {
+            SceneFader.FadeOut(1f);
             SceneManager.LoadScene(inGameSceneName);
         }
         else
@@ -48,6 +50,7 @@ public static class SceneTransitionManager
     {
         if (Application.CanStreamedLevelBeLoaded(resultSceneName))
         {
+            SceneFader.FadeOut(1f);
             SceneManager.LoadScene(resultSceneName);
         }
         else
@@ -64,6 +67,7 @@ public static class SceneTransitionManager
     {
         if (Application.CanStreamedLevelBeLoaded(sceneName))
         {
+            SceneFader.FadeOut(1f);
             SceneManager.LoadScene(sceneName);
         }
         else

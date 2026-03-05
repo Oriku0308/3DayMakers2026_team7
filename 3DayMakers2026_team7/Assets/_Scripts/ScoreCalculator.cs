@@ -6,7 +6,11 @@ public static class ScoreCalculator
     /// <summary>反射数に応じたスコアのテーブル</summary>
     static readonly ReflectionBonusRange[] _reflectionCountTable = new[]
     {
-        new ReflectionBonusRange(((0, 1), 10))
+        new ReflectionBonusRange(((1,1),50)),
+        new ReflectionBonusRange(((2,2),100)),
+        new ReflectionBonusRange(((3,3),150)),
+        new ReflectionBonusRange(((4,4),200)),
+        new ReflectionBonusRange(((5,5),250)),
     };
 
     /// <summary>
@@ -18,17 +22,20 @@ public static class ScoreCalculator
     public static int CalculateScore(int baseScore, int reflectionCount)
     {
         var result = 0;
+        var bonus = 0;
         //素点を加算
         result += baseScore;
         foreach (var score in _reflectionCountTable)
         {
             //反射数に応じたボーナスを加算
-            if (score.TryGetBonus(reflectionCount, out var bonus))
+            if (score.TryGetBonus(reflectionCount, out bonus))
             {
                 result += bonus;
                 break;
             }
         }
+        //反射数が一定数を超えたらボーナスの上限値
+        if (reflectionCount > 0 && bonus == 0) result += 500;
         return result;
     }
 
