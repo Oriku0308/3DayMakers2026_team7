@@ -146,8 +146,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Kids
   _badParticle: {fileID: 3665593682703055623}
   _goodParticle: {fileID: 3843354549741909461}
-  _bad: {fileID: 1203535260503484387, guid: 1d8cea4542862174e94f443789bd62d2, type: 3}
-  _good: {fileID: 1579942445345520900, guid: bd557b8ef6530b7448790ac3b968d578, type: 3}
+  _bad: {fileID: 2903344015738364979, guid: cb03767b13f2131459115fdda276970e, type: 3}
+  _good: {fileID: 7454168663007032374, guid: e9c2be94097dc3248abf034e8e67f7bd, type: 3}
   _isBad: 1
   _badScore: 100
   _goodScore: -100

@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4a678ddf8bb4454f9c29103bb118970, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyGroup
-  _badKidsMaxCount: 5
+  _badKidsMaxCount: 4
 --- !u!1001 &1238719521936555317
 PrefabInstance:
   m_ObjectHideFlags: 0
