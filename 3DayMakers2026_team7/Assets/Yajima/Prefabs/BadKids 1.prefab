@@ -86,7 +86,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 1203535260503484387, guid: 1d8cea4542862174e94f443789bd62d2, type: 3}
+  m_Sprite: {fileID: 5639704814862317409, guid: 1de704f1c70191645beb9aba91c63801, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -146,8 +146,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Kids
   _badParticle: {fileID: 710644738242895571}
   _goodParticle: {fileID: 4266124473849781888}
-  _bad: {fileID: -5814110436030001048, guid: d1b144b4d17acfa4bb8b27ffe94dcefb, type: 3}
-  _good: {fileID: 1579942445345520900, guid: bd557b8ef6530b7448790ac3b968d578, type: 3}
+  _bad: {fileID: 5639704814862317409, guid: 1de704f1c70191645beb9aba91c63801, type: 3}
+  _good: {fileID: 2456664943363335329, guid: 3ae477460d45e064ca169510b203dfce, type: 3}
   _isBad: 1
   _badScore: 100
   _goodScore: -100
