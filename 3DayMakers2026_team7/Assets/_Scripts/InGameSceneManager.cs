@@ -13,7 +13,10 @@ public class InGameSceneManager : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI _infoText; // 画面真ん中に大きく表示するテキスト（例: 最初のカウントダウン、終了時など）
-
+    [SerializeField]
+    private float _fadeOutDuration = 1f; // フェードの時間
+    [SerializeField]
+    private float _fadeInDuration = 0.3f; // 明転の時間
 
     private void Awake()
     {
@@ -33,6 +36,7 @@ public class InGameSceneManager : MonoBehaviour
 
     private void Start()
     {
+        SceneFader.FadeIn(_fadeInDuration);
         StartCoroutine(StartPerformance());
     }
 

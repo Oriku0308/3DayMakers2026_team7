@@ -5,7 +5,9 @@ public class TitleSceneManager : MonoBehaviour
 {
     [SerializeField]
     private Button _inGameStartButton;
-    
+    [SerializeField]
+    private float _fadeDuration = 1f;
+
 
     void Start()
     {
@@ -14,6 +16,6 @@ public class TitleSceneManager : MonoBehaviour
 
     private void OnStartButtonClicked()
     {
-        SceneTransitionManager.TransitionToInGame();
+        //SceneTransitionManager.TransitionToInGame();
     }
 }

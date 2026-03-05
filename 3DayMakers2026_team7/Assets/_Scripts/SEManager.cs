@@ -33,12 +33,30 @@ public class SEManager : MonoBehaviour
     }
 
     // ボタンが押されたときのSE再生とシーン遷移を行うメソッド
-    public void OnButtonClick()
+    private void OnButtonClick()
     {
-        if (_seTable.TryGetValue(SEType.ButtonClick, out var clip))
+        StartCoroutine(OnButtonClickCoroutine());
+    }
+
+    private IEnumerator OnButtonClickCoroutine()
+    {
+        string currentSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+
+        if (currentSceneName == "TitleScene")
         {
-            StartCoroutine(WaitToTransition(clip));
+            AudioClip clip = _seTable[SEType.AllKidGood];
+            PlaySE(SEType.AllKidGood);       // ← 先に再生
+            yield return new WaitForSeconds(clip.length);
+            SceneTransitionManager.TransitionToInGame();
         }
+        if (currentSceneName == "ResultScene")
+        {
+            AudioClip clip = _seTable[SEType.ButtonClick];
+            PlaySE(SEType.ButtonClick);      // ← 先に再生
+            yield return new WaitForSeconds(clip.length);
+            SceneTransitionManager.TransitionToTitle();
+        }
+
         Debug.Log("Button Clicked");
     }
 
@@ -81,34 +99,24 @@ public class SEManager : MonoBehaviour
 
     private void Start()
     {
+        PlaySE(SEType.GameStart);
         // ボタンがアタッチされている場合、クリックイベントにリスナーを追加
         if (_button != null)
         {
             _button.onClick.AddListener(OnButtonClick);
         }
 
-        // シーンがInGameSceneの場合、ゲーム開始SEを再生し、カウントダウンを開始
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "InGameScene")
-        {
-            PlaySE(SEType.GameStart);
-            StartCoroutine(AutoCountDown());
-        }
+        //// シーンがInGameSceneの場合、ゲーム開始SEを再生し、カウントダウンを開始
+        //if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "InGameScene")
+        //{
+        //    StartCoroutine(AutoCountDown());
+        //}
     }
 
-    private IEnumerator AutoCountDown()
+    private void CountDown()
     {
-        float totalWaitTime = 5f;               // カウントダウンの総時間
-        int count = 3;                          // カウントダウンの開始数   
-        float interval = totalWaitTime / count; // 各カウントの間隔
 
-        // InGame開始時のカウントダウン用SE
-        // 1秒ごとにSEを鳴らすため5秒待機に合わせる場合、for内の上限数値だけでなく、waitの時間も変更する必要あり
-        for (int i = 0; i < count; i++)
-        {
-            yield return new WaitForSecondsRealtime(interval);
-
-            PlaySE(SEType.Countdown);
-        }
+        PlaySE(SEType.Countdown);
     }
 
     private IEnumerator WaitToTransition(AudioClip clip)
