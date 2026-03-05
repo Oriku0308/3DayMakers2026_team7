@@ -1,58 +1,76 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class SceneFader : MonoBehaviour
 {
-    [SerializeField] private Image fadeImage;
-    [SerializeField] private float fadeDuration = 2f;
+    public static SceneFader Instance;
+
+    [Header("Defalut Settings")]
+    [SerializeField] private Image defaultFadeImage;
+    [SerializeField] private float defaultFadeDuration = 1f;
+
 
     [SerializeField] private bool playFadeInOnStart = true; // Å© ÉeÉXÉgóp
 
-    private void Start()
+    private void Awake()
     {
-        if (playFadeInOnStart)
+        if (Instance == null)
         {
-            StartCoroutine(FadeIn());
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 
     // ===== ñæì] =====
-    public IEnumerator FadeIn()
+    public static void FadeOut(
+         float duration = -1f,
+         Image targetImage = null)
     {
-        float time = 0f;
+        if (Instance == null) return;
 
-        while (time < fadeDuration)
-        {
-            time += Time.deltaTime;
-            float alpha = 1 - (time / fadeDuration);
-            fadeImage.color = new Color(0, 0, 0, alpha);
-            yield return null;
-        }
+        float useDuration = duration > 0 ? duration : Instance.defaultFadeDuration;
+        Image useImage = targetImage != null ? targetImage : Instance.defaultFadeImage;
 
-        fadeImage.color = new Color(0, 0, 0, 0);
+        Instance.StartCoroutine(Instance.FadeRoutine(useImage, 0f, 1f, useDuration));
     }
-
     // ===== à√ì]ÇµÇƒÉVÅ[ÉìëJà⁄ =====
-    public void FadeToScene(string sceneName)
+    public static void FadeIn(
+         float duration = -1f,
+         Image targetImage = null)
     {
-        StartCoroutine(FadeOutAndLoad(sceneName));
-    }
+        if (Instance == null) return;
 
-    private IEnumerator FadeOutAndLoad(string sceneName)
+        float useDuration = duration > 0 ? duration : Instance.defaultFadeDuration;
+        Image useImage = targetImage != null ? targetImage : Instance.defaultFadeImage;
+
+        Instance.StartCoroutine(Instance.FadeRoutine(useImage, 1f, 0f, useDuration));
+    }
+    private IEnumerator FadeRoutine(Image img, float startAlpha, float endAlpha, float duration)
     {
         float time = 0f;
 
-        while (time < fadeDuration)
+        Color color = img.color;
+        color.a = startAlpha;
+        img.color = color;
+
+        while (time < duration)
         {
             time += Time.deltaTime;
-            float alpha = time / fadeDuration;
-            fadeImage.color = new Color(0, 0, 0, alpha);
+            float t = time / duration;
+            float alpha = Mathf.Lerp(startAlpha, endAlpha, t);
+
+            color.a = alpha;
+            img.color = color;
+
             yield return null;
         }
 
-        SceneManager.LoadScene(sceneName);
+        color.a = endAlpha;
+        img.color = color;
     }
 
 }
